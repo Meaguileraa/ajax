@@ -20,19 +20,17 @@ $('#weather-form').on('submit', (evt) => {
 
   const formData = {
     // TODO: select the zipcode input
-    zipcode: $('REPLACE THIS').val()
+    zipcode: $('#zipcode-field').val()
   };
 
   // TODO: choose a request method (GET or POST) by uncommenting one of
   // these blocks of code
 
-  // $.get('/replaceMe', formData, (response) => {
-  //   // Fill in the callback function
-  // });
+  $.get('/weather', formData, (response) => {
+    $('#weather-info').html(response.forecast);
+    // Fill in the callback function
+  });
 
-  // $.post('/replaceMe', formData, (response) => {
-  //   // Fill in the callback function
-  // });
 });
 
 
