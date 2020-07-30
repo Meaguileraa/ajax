@@ -39,6 +39,24 @@ $('#weather-form').on('submit', (evt) => {
 $("#order-form").on('submit', (evt) => {
   evt.preventDefault();
 
+  const formData = {
+    melon_type: $('#melon-type-field').val(), 
+    qty: $('#qty-field').val()
+  };
+
+  $.post('/order-melons', formData, (response) => {
+    const orderStatus = $('#order-status');
+
+    if (result.code === 'ERROR') {
+      orderStatus.css('color', 'red');
+    } 
+    else {
+      orderStatus.css('color', '');
+    }
+
+    orderStatus.html(`<p>${response.msg}</p>`);
+  });
+
   // TODO: create an object to store key-value pairs that'll be sent to
   // the server
 
